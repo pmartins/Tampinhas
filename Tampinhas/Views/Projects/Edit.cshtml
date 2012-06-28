@@ -1,0 +1,107 @@
+﻿@model Tampinhas.Models.Project
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Project</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BenefiterName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BenefiterName)
+            @Html.ValidationMessageFor(model => model.BenefiterName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreatorId, "User")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CreatorId", String.Empty)
+            @Html.ValidationMessageFor(model => model.CreatorId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrganizationId, "Organization")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("OrganizationId", String.Empty)
+            @Html.ValidationMessageFor(model => model.OrganizationId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StatusTypeId, "StatusType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("StatusTypeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.StatusTypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ResponsibleName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ResponsibleName)
+            @Html.ValidationMessageFor(model => model.ResponsibleName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RaisedAmmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RaisedAmmount)
+            @Html.ValidationMessageFor(model => model.RaisedAmmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TotalAmmountRaise)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TotalAmmountRaise)
+            @Html.ValidationMessageFor(model => model.TotalAmmountRaise)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreationDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreationDate)
+            @Html.ValidationMessageFor(model => model.CreationDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ModifiedDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ModifiedDate)
+            @Html.ValidationMessageFor(model => model.ModifiedDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

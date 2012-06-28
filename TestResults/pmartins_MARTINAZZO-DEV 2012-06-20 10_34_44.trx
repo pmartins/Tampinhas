@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="4037bd16-749f-4a04-a598-6b9ad08b58ca" name="pmartins@MARTINAZZO-DEV 2012-06-20 10:34:44" runUser="MARTINAZZO-DEV\pmartins" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="086ebf62-9a02-48a2-9b85-a4c044c69cc7">
+    <Deployment runDeploymentRoot="pmartins_MARTINAZZO-DEV 2012-06-20 10_34_44">
+      <DeploymentItem filename="C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas\bin\Tampinhas.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-06-20T10:34:44.2759231+01:00" queuing="2012-06-20T10:34:49.3182115+01:00" start="2012-06-20T10:34:49.5492247+01:00" finish="2012-06-20T10:35:05.1861190+01:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="2" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="1" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="MARTINAZZO-DEV" outcome="Error" timestamp="2012-06-20T10:35:05.1791186+01:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="About" storage="c:\users\pmartins\documents\visual studio 2010\projects\tampinhas\tampinhas.tests\bin\debug\tampinhas.tests.dll" id="c3948de9-d136-ca5e-0dbc-3093aa42e386">
+      <Execution id="a0582e47-86da-4e13-9963-5c68d828986e" />
+      <TestMethod codeBase="C:/Users/pmartins/Documents/Visual Studio 2010/Projects/Tampinhas/Tampinhas.Tests/bin/Debug/Tampinhas.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Tampinhas.Tests.Controllers.HomeControllerTest, Tampinhas.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="About" />
+    </UnitTest>
+    <UnitTest name="Index" storage="c:\users\pmartins\documents\visual studio 2010\projects\tampinhas\tampinhas.tests\bin\debug\tampinhas.tests.dll" id="73006be0-60fc-bbe0-bb85-950c71ada5ad">
+      <Execution id="7776cb88-d679-4482-8c84-2121933e14d7" />
+      <TestMethod codeBase="C:/Users/pmartins/Documents/Visual Studio 2010/Projects/Tampinhas/Tampinhas.Tests/bin/Debug/Tampinhas.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Tampinhas.Tests.Controllers.HomeControllerTest, Tampinhas.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Index" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="73006be0-60fc-bbe0-bb85-950c71ada5ad" executionId="7776cb88-d679-4482-8c84-2121933e14d7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c3948de9-d136-ca5e-0dbc-3093aa42e386" executionId="a0582e47-86da-4e13-9963-5c68d828986e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="7776cb88-d679-4482-8c84-2121933e14d7" testId="73006be0-60fc-bbe0-bb85-950c71ada5ad" testName="Index" computerName="MARTINAZZO-DEV" duration="00:00:15.4938862" startTime="2012-06-20T10:34:49.6912328+01:00" endTime="2012-06-20T10:35:05.1851190+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7776cb88-d679-4482-8c84-2121933e14d7">
+    </UnitTestResult>
+    <UnitTestResult executionId="a0582e47-86da-4e13-9963-5c68d828986e" testId="c3948de9-d136-ca5e-0dbc-3093aa42e386" testName="About" computerName="MARTINAZZO-DEV" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a0582e47-86da-4e13-9963-5c68d828986e">
+    </UnitTestResult>
+  </Results>
+</TestRun>

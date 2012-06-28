@@ -1,0 +1,66 @@
+﻿@model Tampinhas.Models.Project
+
+@{
+    ViewBag.Title = "Detalhe";
+}
+
+<h2>Detalhes</h2>
+
+<fieldset>
+    <legend>Projecto</legend>
+
+    <div class="display-label">Benefici&aacute;rio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BenefiterName)
+    </div>
+
+    <div class="display-label">Descri&ccedil;&atilde;o</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">Organiza&ccedil;&atilde;o</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Organization.Name)
+    </div>
+
+    <div class="display-label">Nome do Respons&aacute;vel</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ResponsibleName)
+    </div>
+
+        <div class="display-label">E-mail do Respons&aacute;vel</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User.Email)
+    </div>
+
+
+    <div class="display-label">Quantia Angariada (Kgs)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RaisedAmmount)
+    </div>
+
+    <div class="display-label">Quantia a Angariar (Kgs)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalAmmountRaise)
+    </div>
+
+    <div class="display-label">Data de Cria&ccedil;&atilde;o do Projecto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreationDate)
+    </div>
+
+    <div class="display-label">Data da &Ugrave;ltima Altera&ccedil;&atilde;o ao Projecto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ModifiedDate)
+    </div>
+
+        <div class="display-label">Estado do Projecto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StatusType.Description)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Voltar à lista", "Index")
+</p>

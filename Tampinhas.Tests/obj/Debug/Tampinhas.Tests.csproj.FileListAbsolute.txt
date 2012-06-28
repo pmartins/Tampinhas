@@ -1,0 +1,12 @@
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\bin\Debug\Tampinhas.Tests.dll.config
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\bin\Debug\Tampinhas.Tests.dll
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\bin\Debug\Tampinhas.Tests.pdb
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\bin\Debug\Tampinhas.dll
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\bin\Debug\Tampinhas.pdb
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\obj\Debug\Tampinhas.Tests.dll
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\obj\Debug\Tampinhas.Tests.pdb
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\bin\Debug\EntityFramework.dll
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\bin\Debug\EntityFramework.xml
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\bin\Debug\Recaptcha.dll
+C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas.Tests\bin\Debug\Recaptcha.pdb

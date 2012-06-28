@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TampinhasModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="TampinhasModel1StoreContainer">
+    <EntitySet Name="UserSet" EntityType="TampinhasModel1.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectSet" EntityType="TampinhasModel1.Store.ProjectSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrganizationSet" EntityType="TampinhasModel1.Store.OrganizationSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PlaceSet" EntityType="TampinhasModel1.Store.PlaceSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StatusTypeSet" EntityType="TampinhasModel1.Store.StatusTypeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectCommentSet" EntityType="TampinhasModel1.Store.ProjectCommentSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectStatusChangeSet" EntityType="TampinhasModel1.Store.ProjectStatusChangeSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserProject" Association="TampinhasModel1.Store.UserProject">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Project" EntitySet="ProjectSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectOrganization" Association="TampinhasModel1.Store.ProjectOrganization">
+      <End Role="Project" EntitySet="ProjectSet" />
+      <End Role="Organization" EntitySet="OrganizationSet" />
+    </AssociationSet>
+    <AssociationSet Name="OrganizationPlace" Association="TampinhasModel1.Store.OrganizationPlace">
+      <End Role="Organization" EntitySet="OrganizationSet" />
+      <End Role="Place" EntitySet="PlaceSet" />
+    </AssociationSet>
+    <AssociationSet Name="OrganizationCounty" Association="TampinhasModel1.Store.OrganizationCounty">
+      <End Role="Organization" EntitySet="OrganizationSet" />
+      <End Role="Place" EntitySet="PlaceSet" />
+    </AssociationSet>
+    <AssociationSet Name="CountyDistrict" Association="TampinhasModel1.Store.CountyDistrict">
+      <End Role="Place" EntitySet="PlaceSet" />
+      <End Role="Place1" EntitySet="PlaceSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectStatusType" Association="TampinhasModel1.Store.ProjectStatusType">
+      <End Role="Project" EntitySet="ProjectSet" />
+      <End Role="StatusType" EntitySet="StatusTypeSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectCommentUser" Association="TampinhasModel1.Store.ProjectCommentUser">
+      <End Role="ProjectComment" EntitySet="ProjectCommentSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectCommentProject" Association="TampinhasModel1.Store.ProjectCommentProject">
+      <End Role="ProjectComment" EntitySet="ProjectCommentSet" />
+      <End Role="Project" EntitySet="ProjectSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectStatusChangeProject" Association="TampinhasModel1.Store.ProjectStatusChangeProject">
+      <End Role="ProjectStatusChange" EntitySet="ProjectStatusChangeSet" />
+      <End Role="Project" EntitySet="ProjectSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BenefiterName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatorId" Type="int" Nullable="false" />
+    <Property Name="OrganizationId" Type="int" Nullable="false" />
+    <Property Name="StatusTypeId" Type="int" Nullable="false" />
+    <Property Name="ResponsibleName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RaisedAmmount" Type="int" Nullable="false" />
+    <Property Name="TotalAmmountRaise" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrganizationSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DistrictId" Type="int" Nullable="false" />
+    <Property Name="CountyId" Type="int" Nullable="false" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlaceSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ParentId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="StatusTypeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectCommentSet">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="ProjectId" />
+      <PropertyRef Name="ComentDate" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="ComentDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectStatusChangeSet">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+      <PropertyRef Name="StatusChangeDate" />
+    </Key>
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="StatusChangeComment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StatusChangeDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="UserProject">
+    <End Role="User" Type="TampinhasModel1.Store.UserSet" Multiplicity="1" />
+    <End Role="Project" Type="TampinhasModel1.Store.ProjectSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="CreatorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectOrganization">
+    <End Role="Project" Type="TampinhasModel1.Store.ProjectSet" Multiplicity="*" />
+    <End Role="Organization" Type="TampinhasModel1.Store.OrganizationSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrganizationPlace">
+    <End Role="Organization" Type="TampinhasModel1.Store.OrganizationSet" Multiplicity="*" />
+    <End Role="Place" Type="TampinhasModel1.Store.PlaceSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrganizationCounty">
+    <End Role="Organization" Type="TampinhasModel1.Store.OrganizationSet" Multiplicity="*" />
+    <End Role="Place" Type="TampinhasModel1.Store.PlaceSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CountyDistrict">
+    <End Role="Place" Type="TampinhasModel1.Store.PlaceSet" Multiplicity="*" />
+    <End Role="Place1" Type="TampinhasModel1.Store.PlaceSet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Place1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Place">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectStatusType">
+    <End Role="Project" Type="TampinhasModel1.Store.ProjectSet" Multiplicity="*" />
+    <End Role="StatusType" Type="TampinhasModel1.Store.StatusTypeSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="StatusType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="StatusTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectCommentUser">
+    <End Role="ProjectComment" Type="TampinhasModel1.Store.ProjectCommentSet" Multiplicity="*" />
+    <End Role="User" Type="TampinhasModel1.Store.UserSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectComment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectCommentProject">
+    <End Role="ProjectComment" Type="TampinhasModel1.Store.ProjectCommentSet" Multiplicity="*" />
+    <End Role="Project" Type="TampinhasModel1.Store.ProjectSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectComment">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectStatusChangeProject">
+    <End Role="ProjectStatusChange" Type="TampinhasModel1.Store.ProjectStatusChangeSet" Multiplicity="*" />
+    <End Role="Project" Type="TampinhasModel1.Store.ProjectSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectStatusChange">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TampinhasModel1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TampinhasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserSet" EntityType="TampinhasModel1.User" />
+          <EntitySet Name="ProjectSet" EntityType="TampinhasModel1.Project" />
+          <EntitySet Name="OrganizationSet" EntityType="TampinhasModel1.Organization" />
+          <EntitySet Name="PlaceSet" EntityType="TampinhasModel1.Place" />
+          <EntitySet Name="StatusTypeSet" EntityType="TampinhasModel1.StatusType" />
+          <EntitySet Name="ProjectCommentSet" EntityType="TampinhasModel1.ProjectComment" />
+          <EntitySet Name="ProjectStatusChangeSet" EntityType="TampinhasModel1.ProjectStatusChange" />
+          <AssociationSet Name="UserProject" Association="TampinhasModel1.UserProject">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Project" EntitySet="ProjectSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectOrganization" Association="TampinhasModel1.ProjectOrganization">
+            <End Role="Project" EntitySet="ProjectSet" />
+            <End Role="Organization" EntitySet="OrganizationSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrganizationPlace" Association="TampinhasModel1.OrganizationPlace">
+            <End Role="Organization" EntitySet="OrganizationSet" />
+            <End Role="Place" EntitySet="PlaceSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrganizationCounty" Association="TampinhasModel1.OrganizationCounty">
+            <End Role="Organization" EntitySet="OrganizationSet" />
+            <End Role="Place" EntitySet="PlaceSet" />
+          </AssociationSet>
+          <AssociationSet Name="CountyDistrict" Association="TampinhasModel1.CountyDistrict">
+            <End Role="Place" EntitySet="PlaceSet" />
+            <End Role="Place1" EntitySet="PlaceSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectStatusType" Association="TampinhasModel1.ProjectStatusType">
+            <End Role="Project" EntitySet="ProjectSet" />
+            <End Role="StatusType" EntitySet="StatusTypeSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectCommentUser" Association="TampinhasModel1.ProjectCommentUser">
+            <End Role="ProjectComment" EntitySet="ProjectCommentSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectCommentProject" Association="TampinhasModel1.ProjectCommentProject">
+            <End Role="ProjectComment" EntitySet="ProjectCommentSet" />
+            <End Role="Project" EntitySet="ProjectSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectStatusChangeProject" Association="TampinhasModel1.ProjectStatusChangeProject">
+            <End Role="ProjectStatusChange" EntitySet="ProjectStatusChangeSet" />
+            <End Role="Project" EntitySet="ProjectSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Email" Nullable="false" />
+          <Property Type="String" Name="Password" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="Projects" Relationship="TampinhasModel1.UserProject" FromRole="User" ToRole="Project" />
+          <NavigationProperty Name="ProjectComment" Relationship="TampinhasModel1.ProjectCommentUser" FromRole="User" ToRole="ProjectComment" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="BenefiterName" Nullable="false" >
+            <Documentation>
+              <LongDescription>Pessoa a Beneficiar do Projecto</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="Int32" Name="CreatorId" Nullable="false" />
+          <Property Type="Int32" Name="OrganizationId" Nullable="false" />
+          <Property Type="Int32" Name="StatusTypeId" Nullable="false" />
+          <Property Type="String" Name="ResponsibleName" Nullable="false" />
+          <Property Type="Int32" Name="RaisedAmmount" Nullable="false" />
+          <Property Type="Int32" Name="TotalAmmountRaise" Nullable="false" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="TampinhasModel1.UserProject" FromRole="Project" ToRole="User" />
+          <NavigationProperty Name="Organization" Relationship="TampinhasModel1.ProjectOrganization" FromRole="Project" ToRole="Organization" />
+          <NavigationProperty Name="StatusType" Relationship="TampinhasModel1.ProjectStatusType" FromRole="Project" ToRole="StatusType" />
+          <NavigationProperty Name="ProjectComment" Relationship="TampinhasModel1.ProjectCommentProject" FromRole="Project" ToRole="ProjectComment" />
+          <NavigationProperty Name="ProjectStatusChange" Relationship="TampinhasModel1.ProjectStatusChangeProject" FromRole="Project" ToRole="ProjectStatusChange" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="false" />
+          <Property Type="Int32" Name="DistrictId" Nullable="false" />
+          <Property Type="Int32" Name="CountyId" Nullable="false" />
+          <Property Type="String" Name="Location" Nullable="false" />
+          <Property Type="String" Name="Phone" Nullable="false" />
+          <NavigationProperty Name="Projects" Relationship="TampinhasModel1.ProjectOrganization" FromRole="Organization" ToRole="Project" />
+          <NavigationProperty Name="District" Relationship="TampinhasModel1.OrganizationPlace" FromRole="Organization" ToRole="Place" />
+          <NavigationProperty Name="County" Relationship="TampinhasModel1.OrganizationCounty" FromRole="Organization" ToRole="Place" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="Int32" Name="ParentId" Nullable="true" />
+          <NavigationProperty Name="OrganizationsByDisctrict" Relationship="TampinhasModel1.OrganizationPlace" FromRole="Place" ToRole="Organization" />
+          <NavigationProperty Name="OrganizationsByCounty" Relationship="TampinhasModel1.OrganizationCounty" FromRole="Place" ToRole="Organization" />
+          <NavigationProperty Name="County" Relationship="TampinhasModel1.CountyDistrict" FromRole="Place" ToRole="Place1" />
+          <NavigationProperty Name="District" Relationship="TampinhasModel1.CountyDistrict" FromRole="Place1" ToRole="Place" />
+        </EntityType>
+        <EntityType Name="StatusType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="TampinhasModel1.ProjectStatusType" FromRole="StatusType" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="ProjectComment">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProjectId" />
+            <PropertyRef Name="ComentDate" />
+          </Key>
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Comment" Nullable="false" />
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <Property Type="DateTime" Name="ComentDate" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="TampinhasModel1.ProjectCommentUser" FromRole="ProjectComment" ToRole="User" />
+          <NavigationProperty Name="Project" Relationship="TampinhasModel1.ProjectCommentProject" FromRole="ProjectComment" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="ProjectStatusChange">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+            <PropertyRef Name="StatusChangeDate" />
+          </Key>
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <Property Type="String" Name="StatusChangeComment" Nullable="false" />
+          <Property Type="DateTime" Name="StatusChangeDate" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="TampinhasModel1.ProjectStatusChangeProject" FromRole="ProjectStatusChange" ToRole="Project" />
+        </EntityType>
+        <Association Name="UserProject">
+          <End Type="TampinhasModel1.User" Role="User" Multiplicity="1" />
+          <End Type="TampinhasModel1.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="CreatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProjectOrganization">
+          <End Type="TampinhasModel1.Project" Role="Project" Multiplicity="*" />
+          <End Type="TampinhasModel1.Organization" Role="Organization" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrganizationPlace">
+          <End Type="TampinhasModel1.Organization" Role="Organization" Multiplicity="*" />
+          <End Type="TampinhasModel1.Place" Role="Place" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrganizationCounty">
+          <End Type="TampinhasModel1.Organization" Role="Organization" Multiplicity="*" />
+          <End Type="TampinhasModel1.Place" Role="Place" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CountyDistrict">
+          <End Type="TampinhasModel1.Place" Role="Place" Multiplicity="*" />
+          <End Type="TampinhasModel1.Place" Role="Place1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Place1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Place">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProjectStatusType">
+          <End Type="TampinhasModel1.Project" Role="Project" Multiplicity="*" />
+          <End Type="TampinhasModel1.StatusType" Role="StatusType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="StatusType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="StatusTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProjectCommentUser">
+          <End Type="TampinhasModel1.ProjectComment" Role="ProjectComment" Multiplicity="*" />
+          <End Type="TampinhasModel1.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectComment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProjectCommentProject">
+          <End Type="TampinhasModel1.ProjectComment" Role="ProjectComment" Multiplicity="*" />
+          <End Type="TampinhasModel1.Project" Role="Project" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectComment">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProjectStatusChangeProject">
+          <End Type="TampinhasModel1.ProjectStatusChange" Role="ProjectStatusChange" Multiplicity="*" />
+          <End Type="TampinhasModel1.Project" Role="Project" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectStatusChange">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TampinhasModel1StoreContainer" CdmEntityContainer="TampinhasEntities">
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(TampinhasModel1.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectSet">
+      <EntityTypeMapping TypeName="IsTypeOf(TampinhasModel1.Project)">
+        <MappingFragment StoreEntitySet="ProjectSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BenefiterName" ColumnName="BenefiterName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+          <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+          <ScalarProperty Name="StatusTypeId" ColumnName="StatusTypeId" />
+          <ScalarProperty Name="ResponsibleName" ColumnName="ResponsibleName" />
+          <ScalarProperty Name="RaisedAmmount" ColumnName="RaisedAmmount" />
+          <ScalarProperty Name="TotalAmmountRaise" ColumnName="TotalAmmountRaise" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganizationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(TampinhasModel1.Organization)">
+        <MappingFragment StoreEntitySet="OrganizationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlaceSet">
+      <EntityTypeMapping TypeName="IsTypeOf(TampinhasModel1.Place)">
+        <MappingFragment StoreEntitySet="PlaceSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusTypeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(TampinhasModel1.StatusType)">
+        <MappingFragment StoreEntitySet="StatusTypeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectCommentSet">
+      <EntityTypeMapping TypeName="IsTypeOf(TampinhasModel1.ProjectComment)">
+        <MappingFragment StoreEntitySet="ProjectCommentSet">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ComentDate" ColumnName="ComentDate" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectStatusChangeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(TampinhasModel1.ProjectStatusChange)">
+        <MappingFragment StoreEntitySet="ProjectStatusChangeSet">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="StatusChangeDate" ColumnName="StatusChangeDate" />
+          <ScalarProperty Name="StatusChangeComment" ColumnName="StatusChangeComment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Tampinhas" ZoomLevel="77">
+        <EntityTypeShape EntityType="TampinhasModel1.User" Width="1.5" PointX="3" PointY="3.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="TampinhasModel1.Project" Width="1.5" PointX="5.25" PointY="2.625" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="TampinhasModel1.Organization" Width="1.5" PointX="7.5" PointY="4.375" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="TampinhasModel1.Place" Width="1.5" PointX="9.75" PointY="4.625" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="TampinhasModel1.StatusType" Width="1.5" PointX="7.5" PointY="2" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="TampinhasModel1.ProjectComment" Width="1.5" PointX="0.75" PointY="3.5" Height="2.1725878906249956" />
+        <EntityTypeShape EntityType="TampinhasModel1.ProjectStatusChange" Width="1.5" PointX="3" PointY="0.75" Height="1.7879850260416674" />
+        <AssociationConnector Association="TampinhasModel1.UserProject" >
+          <ConnectorPoint PointX="4.5" PointY="4.6824446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="4.6824446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="TampinhasModel1.ProjectOrganization" >
+          <ConnectorPoint PointX="6.75" PointY="5.5478011067708337" />
+          <ConnectorPoint PointX="7.5" PointY="5.5478011067708337" />
+        </AssociationConnector>
+        <AssociationConnector Association="TampinhasModel1.OrganizationPlace" >
+          <ConnectorPoint PointX="9" PointY="5.8074446614583337" />
+          <ConnectorPoint PointX="9.75" PointY="5.8074446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="TampinhasModel1.OrganizationCounty" >
+          <ConnectorPoint PointX="9" PointY="5.1537223307291669" />
+          <ConnectorPoint PointX="9.75" PointY="5.1537223307291669" />
+        </AssociationConnector>
+        <AssociationConnector Association="TampinhasModel1.CountyDistrict" >
+          <ConnectorPoint PointX="10.281923076923077" PointY="6.9898893229166674" />
+          <ConnectorPoint PointX="10.281923076923077" PointY="7.2398893229166674" />
+          <ConnectorPoint PointX="10.728461538461538" PointY="7.2398893229166674" />
+          <ConnectorPoint PointX="10.728461538461538" PointY="6.9898893229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="TampinhasModel1.ProjectStatusType" >
+          <ConnectorPoint PointX="6.75" PointY="3.1103417968750016" />
+          <ConnectorPoint PointX="7.5" PointY="3.1103417968750016" />
+        </AssociationConnector>
+        <AssociationConnector Association="TampinhasModel1.ProjectCommentUser" >
+          <ConnectorPoint PointX="2.25" PointY="4.586293945312498" />
+          <ConnectorPoint PointX="3" PointY="4.586293945312498" />
+        </AssociationConnector>
+        <AssociationConnector Association="TampinhasModel1.ProjectCommentProject" >
+          <ConnectorPoint PointX="1.5" PointY="5.672587890624996" />
+          <ConnectorPoint PointX="1.5" PointY="6.3239957682291674" />
+          <ConnectorPoint PointX="5.25" PointY="6.3239957682291674" />
+        </AssociationConnector>
+        <AssociationConnector Association="TampinhasModel1.ProjectStatusChangeProject" >
+          <ConnectorPoint PointX="4.5" PointY="1.6439925130208337" />
+          <ConnectorPoint PointX="6" PointY="1.6439925130208337" />
+          <ConnectorPoint PointX="6" PointY="2.625" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

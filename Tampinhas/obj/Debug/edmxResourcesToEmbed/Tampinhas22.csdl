@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TampinhasModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="TampinhasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="OrganizationSets" EntityType="TampinhasModel.OrganizationSet" />
+    <EntitySet Name="PlaceSets" EntityType="TampinhasModel.PlaceSet" />
+    <EntitySet Name="ProjectCommentSets" EntityType="TampinhasModel.ProjectCommentSet" />
+    <EntitySet Name="ProjectSets" EntityType="TampinhasModel.ProjectSet" />
+    <EntitySet Name="ProjectStatusChangeSets" EntityType="TampinhasModel.ProjectStatusChangeSet" />
+    <EntitySet Name="StatusTypeSets" EntityType="TampinhasModel.StatusTypeSet" />
+    <EntitySet Name="UserSets" EntityType="TampinhasModel.UserSet" />
+    <AssociationSet Name="FK_OrganizationCounty" Association="TampinhasModel.FK_OrganizationCounty">
+      <End Role="PlaceSet" EntitySet="PlaceSets" />
+      <End Role="OrganizationSet" EntitySet="OrganizationSets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationPlace" Association="TampinhasModel.FK_OrganizationPlace">
+      <End Role="PlaceSet" EntitySet="PlaceSets" />
+      <End Role="OrganizationSet" EntitySet="OrganizationSets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectOrganization" Association="TampinhasModel.FK_ProjectOrganization">
+      <End Role="OrganizationSet" EntitySet="OrganizationSets" />
+      <End Role="ProjectSet" EntitySet="ProjectSets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CountyDistrict" Association="TampinhasModel.FK_CountyDistrict">
+      <End Role="PlaceSet" EntitySet="PlaceSets" />
+      <End Role="PlaceSet1" EntitySet="PlaceSets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectCommentProject" Association="TampinhasModel.FK_ProjectCommentProject">
+      <End Role="ProjectSet" EntitySet="ProjectSets" />
+      <End Role="ProjectCommentSet" EntitySet="ProjectCommentSets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectCommentUser" Association="TampinhasModel.FK_ProjectCommentUser">
+      <End Role="UserSet" EntitySet="UserSets" />
+      <End Role="ProjectCommentSet" EntitySet="ProjectCommentSets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectStatusChangeProject" Association="TampinhasModel.FK_ProjectStatusChangeProject">
+      <End Role="ProjectSet" EntitySet="ProjectSets" />
+      <End Role="ProjectStatusChangeSet" EntitySet="ProjectStatusChangeSets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectStatusType" Association="TampinhasModel.FK_ProjectStatusType">
+      <End Role="StatusTypeSet" EntitySet="StatusTypeSets" />
+      <End Role="ProjectSet" EntitySet="ProjectSets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProject" Association="TampinhasModel.FK_UserProject">
+      <End Role="UserSet" EntitySet="UserSets" />
+      <End Role="ProjectSet" EntitySet="ProjectSets" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="OrganizationSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+    <Property Name="CountyId" Type="Int32" Nullable="false" />
+    <Property Name="Location" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="PlaceSet" Relationship="TampinhasModel.FK_OrganizationCounty" FromRole="OrganizationSet" ToRole="PlaceSet" />
+    <NavigationProperty Name="PlaceSet1" Relationship="TampinhasModel.FK_OrganizationPlace" FromRole="OrganizationSet" ToRole="PlaceSet" />
+    <NavigationProperty Name="ProjectSets" Relationship="TampinhasModel.FK_ProjectOrganization" FromRole="OrganizationSet" ToRole="ProjectSet" />
+  </EntityType>
+  <EntityType Name="PlaceSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <NavigationProperty Name="OrganizationSets" Relationship="TampinhasModel.FK_OrganizationCounty" FromRole="PlaceSet" ToRole="OrganizationSet" />
+    <NavigationProperty Name="OrganizationSets1" Relationship="TampinhasModel.FK_OrganizationPlace" FromRole="PlaceSet" ToRole="OrganizationSet" />
+    <NavigationProperty Name="PlaceSet1" Relationship="TampinhasModel.FK_CountyDistrict" FromRole="PlaceSet" ToRole="PlaceSet1" />
+    <NavigationProperty Name="PlaceSet2" Relationship="TampinhasModel.FK_CountyDistrict" FromRole="PlaceSet1" ToRole="PlaceSet" />
+  </EntityType>
+  <EntityType Name="ProjectCommentSet">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="ProjectId" />
+      <PropertyRef Name="ComentDate" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ProjectId" Type="Int32" Nullable="false" />
+    <Property Name="ComentDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="ProjectSet" Relationship="TampinhasModel.FK_ProjectCommentProject" FromRole="ProjectCommentSet" ToRole="ProjectSet" />
+    <NavigationProperty Name="UserSet" Relationship="TampinhasModel.FK_ProjectCommentUser" FromRole="ProjectCommentSet" ToRole="UserSet" />
+  </EntityType>
+  <EntityType Name="ProjectSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BenefiterName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatorId" Type="Int32" Nullable="false" />
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+    <Property Name="StatusTypeId" Type="Int32" Nullable="false" />
+    <Property Name="ResponsibleName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="RaisedAmmount" Type="Int32" Nullable="false" />
+    <Property Name="TotalAmmountRaise" Type="Int32" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="OrganizationSet" Relationship="TampinhasModel.FK_ProjectOrganization" FromRole="ProjectSet" ToRole="OrganizationSet" />
+    <NavigationProperty Name="ProjectCommentSets" Relationship="TampinhasModel.FK_ProjectCommentProject" FromRole="ProjectSet" ToRole="ProjectCommentSet" />
+    <NavigationProperty Name="ProjectStatusChangeSets" Relationship="TampinhasModel.FK_ProjectStatusChangeProject" FromRole="ProjectSet" ToRole="ProjectStatusChangeSet" />
+    <NavigationProperty Name="StatusTypeSet" Relationship="TampinhasModel.FK_ProjectStatusType" FromRole="ProjectSet" ToRole="StatusTypeSet" />
+    <NavigationProperty Name="UserSet" Relationship="TampinhasModel.FK_UserProject" FromRole="ProjectSet" ToRole="UserSet" />
+  </EntityType>
+  <EntityType Name="ProjectStatusChangeSet">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+      <PropertyRef Name="StatusChangeDate" />
+    </Key>
+    <Property Name="ProjectId" Type="Int32" Nullable="false" />
+    <Property Name="StatusChangeComment" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="StatusChangeDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="ProjectSet" Relationship="TampinhasModel.FK_ProjectStatusChangeProject" FromRole="ProjectStatusChangeSet" ToRole="ProjectSet" />
+  </EntityType>
+  <EntityType Name="StatusTypeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="ProjectSets" Relationship="TampinhasModel.FK_ProjectStatusType" FromRole="StatusTypeSet" ToRole="ProjectSet" />
+  </EntityType>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="ProjectCommentSets" Relationship="TampinhasModel.FK_ProjectCommentUser" FromRole="UserSet" ToRole="ProjectCommentSet" />
+    <NavigationProperty Name="ProjectSets" Relationship="TampinhasModel.FK_UserProject" FromRole="UserSet" ToRole="ProjectSet" />
+  </EntityType>
+  <Association Name="FK_OrganizationCounty">
+    <End Role="PlaceSet" Type="TampinhasModel.PlaceSet" Multiplicity="1" />
+    <End Role="OrganizationSet" Type="TampinhasModel.OrganizationSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlaceSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrganizationSet">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationPlace">
+    <End Role="PlaceSet" Type="TampinhasModel.PlaceSet" Multiplicity="1" />
+    <End Role="OrganizationSet" Type="TampinhasModel.OrganizationSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlaceSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrganizationSet">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectOrganization">
+    <End Role="OrganizationSet" Type="TampinhasModel.OrganizationSet" Multiplicity="1" />
+    <End Role="ProjectSet" Type="TampinhasModel.ProjectSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectSet">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CountyDistrict">
+    <End Role="PlaceSet" Type="TampinhasModel.PlaceSet" Multiplicity="0..1" />
+    <End Role="PlaceSet1" Type="TampinhasModel.PlaceSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlaceSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlaceSet1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectCommentProject">
+    <End Role="ProjectSet" Type="TampinhasModel.ProjectSet" Multiplicity="1" />
+    <End Role="ProjectCommentSet" Type="TampinhasModel.ProjectCommentSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectCommentSet">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectCommentUser">
+    <End Role="UserSet" Type="TampinhasModel.UserSet" Multiplicity="1" />
+    <End Role="ProjectCommentSet" Type="TampinhasModel.ProjectCommentSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectCommentSet">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectStatusChangeProject">
+    <End Role="ProjectSet" Type="TampinhasModel.ProjectSet" Multiplicity="1" />
+    <End Role="ProjectStatusChangeSet" Type="TampinhasModel.ProjectStatusChangeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectStatusChangeSet">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectStatusType">
+    <End Role="StatusTypeSet" Type="TampinhasModel.StatusTypeSet" Multiplicity="1" />
+    <End Role="ProjectSet" Type="TampinhasModel.ProjectSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusTypeSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectSet">
+        <PropertyRef Name="StatusTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProject">
+    <End Role="UserSet" Type="TampinhasModel.UserSet" Multiplicity="1" />
+    <End Role="ProjectSet" Type="TampinhasModel.ProjectSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectSet">
+        <PropertyRef Name="CreatorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

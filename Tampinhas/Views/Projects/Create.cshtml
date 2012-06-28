@@ -1,0 +1,68 @@
+﻿@model Tampinhas.Models.Project
+
+@{
+    ViewBag.Title = "Registar";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Projecto</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BenefiterName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BenefiterName)
+            @Html.ValidationMessageFor(model => model.BenefiterName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TotalAmmountRaise)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TotalAmmountRaise)
+            @Html.ValidationMessageFor(model => model.TotalAmmountRaise)
+        </div>
+        
+        <fieldset>
+            <legend>Organiza&ccedil;&atilde;o</legend>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OrganizationId, "Organization")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("OrganizationId", String.Empty)
+                @Html.ValidationMessageFor(model => model.OrganizationId)
+            </div>
+            
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ResponsibleName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ResponsibleName)
+                @Html.ValidationMessageFor(model => model.ResponsibleName)
+            </div>        
+        </fieldset>
+
+        <p>
+            <input type="submit" value="Registar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar à lista", "Index")
+</div>

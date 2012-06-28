@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TampinhasModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="TampinhasModel1StoreContainer">
+    <EntitySet Name="UserSet" EntityType="TampinhasModel1.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectSet" EntityType="TampinhasModel1.Store.ProjectSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrganizationSet" EntityType="TampinhasModel1.Store.OrganizationSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PlaceSet" EntityType="TampinhasModel1.Store.PlaceSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StatusTypeSet" EntityType="TampinhasModel1.Store.StatusTypeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectCommentSet" EntityType="TampinhasModel1.Store.ProjectCommentSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectStatusChangeSet" EntityType="TampinhasModel1.Store.ProjectStatusChangeSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserProject" Association="TampinhasModel1.Store.UserProject">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Project" EntitySet="ProjectSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectOrganization" Association="TampinhasModel1.Store.ProjectOrganization">
+      <End Role="Project" EntitySet="ProjectSet" />
+      <End Role="Organization" EntitySet="OrganizationSet" />
+    </AssociationSet>
+    <AssociationSet Name="OrganizationPlace" Association="TampinhasModel1.Store.OrganizationPlace">
+      <End Role="Organization" EntitySet="OrganizationSet" />
+      <End Role="Place" EntitySet="PlaceSet" />
+    </AssociationSet>
+    <AssociationSet Name="OrganizationCounty" Association="TampinhasModel1.Store.OrganizationCounty">
+      <End Role="Organization" EntitySet="OrganizationSet" />
+      <End Role="Place" EntitySet="PlaceSet" />
+    </AssociationSet>
+    <AssociationSet Name="CountyDistrict" Association="TampinhasModel1.Store.CountyDistrict">
+      <End Role="Place" EntitySet="PlaceSet" />
+      <End Role="Place1" EntitySet="PlaceSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectStatusType" Association="TampinhasModel1.Store.ProjectStatusType">
+      <End Role="Project" EntitySet="ProjectSet" />
+      <End Role="StatusType" EntitySet="StatusTypeSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectCommentUser" Association="TampinhasModel1.Store.ProjectCommentUser">
+      <End Role="ProjectComment" EntitySet="ProjectCommentSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectCommentProject" Association="TampinhasModel1.Store.ProjectCommentProject">
+      <End Role="ProjectComment" EntitySet="ProjectCommentSet" />
+      <End Role="Project" EntitySet="ProjectSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectStatusChangeProject" Association="TampinhasModel1.Store.ProjectStatusChangeProject">
+      <End Role="ProjectStatusChange" EntitySet="ProjectStatusChangeSet" />
+      <End Role="Project" EntitySet="ProjectSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BenefiterName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatorId" Type="int" Nullable="false" />
+    <Property Name="OrganizationId" Type="int" Nullable="false" />
+    <Property Name="StatusTypeId" Type="int" Nullable="false" />
+    <Property Name="ResponsibleName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RaisedAmmount" Type="int" Nullable="false" />
+    <Property Name="TotalAmmountRaise" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrganizationSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DistrictId" Type="int" Nullable="false" />
+    <Property Name="CountyId" Type="int" Nullable="false" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlaceSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ParentId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="StatusTypeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectCommentSet">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="ProjectId" />
+      <PropertyRef Name="ComentDate" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="ComentDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectStatusChangeSet">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+      <PropertyRef Name="StatusChangeDate" />
+    </Key>
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="StatusChangeComment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StatusChangeDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="UserProject">
+    <End Role="User" Type="TampinhasModel1.Store.UserSet" Multiplicity="1" />
+    <End Role="Project" Type="TampinhasModel1.Store.ProjectSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="CreatorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectOrganization">
+    <End Role="Project" Type="TampinhasModel1.Store.ProjectSet" Multiplicity="*" />
+    <End Role="Organization" Type="TampinhasModel1.Store.OrganizationSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrganizationPlace">
+    <End Role="Organization" Type="TampinhasModel1.Store.OrganizationSet" Multiplicity="*" />
+    <End Role="Place" Type="TampinhasModel1.Store.PlaceSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrganizationCounty">
+    <End Role="Organization" Type="TampinhasModel1.Store.OrganizationSet" Multiplicity="*" />
+    <End Role="Place" Type="TampinhasModel1.Store.PlaceSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CountyDistrict">
+    <End Role="Place" Type="TampinhasModel1.Store.PlaceSet" Multiplicity="*" />
+    <End Role="Place1" Type="TampinhasModel1.Store.PlaceSet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Place1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Place">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectStatusType">
+    <End Role="Project" Type="TampinhasModel1.Store.ProjectSet" Multiplicity="*" />
+    <End Role="StatusType" Type="TampinhasModel1.Store.StatusTypeSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="StatusType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="StatusTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectCommentUser">
+    <End Role="ProjectComment" Type="TampinhasModel1.Store.ProjectCommentSet" Multiplicity="*" />
+    <End Role="User" Type="TampinhasModel1.Store.UserSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectComment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectCommentProject">
+    <End Role="ProjectComment" Type="TampinhasModel1.Store.ProjectCommentSet" Multiplicity="*" />
+    <End Role="Project" Type="TampinhasModel1.Store.ProjectSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectComment">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectStatusChangeProject">
+    <End Role="ProjectStatusChange" Type="TampinhasModel1.Store.ProjectStatusChangeSet" Multiplicity="*" />
+    <End Role="Project" Type="TampinhasModel1.Store.ProjectSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectStatusChange">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

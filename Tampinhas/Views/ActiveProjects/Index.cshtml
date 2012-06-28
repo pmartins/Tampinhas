@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Tampinhas.Models.Project>
+
+@{
+    ViewBag.Title = "Projectos Activos";
+}
+
+<h2>Projectos Activos</h2>
+
+
+@using (Html.BeginForm())
+{ 
+    <p>
+    Localidade: @Html.TextBox("SearchString")
+    <input type="submit" value="Pequisar" />
+    </p>
+}
+<table>
+    <tr>
+        <th>
+            Organiza&ccedil;&atilde;o
+        </th>
+        <th>
+            Local
+        </th>
+        <th>
+            Respons&aacute;vel
+        </th>
+        <th>
+            Qtd Angariada
+        </th>
+        <th>
+            Data Cria&ccedil;&atilde;o
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Organization.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Organization.District.Name) /
+            @Html.DisplayFor(modelItem => item.Organization.County.Name) /
+            @Html.DisplayFor(modelItem => item.Organization.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponsibleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RaisedAmmount) /
+            @Html.DisplayFor(modelItem => item.TotalAmmountRaise)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.ActionLink("Ver Detalhes", "Details", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,50 @@
+﻿Tempos de Desenvolvimento
+2012-05-29
+==========
+30 min.
+
+2012-05-30
+==========
+1h30
+
+2012-06-01
+==========
+2h
+
+2012-06-03
+==========
+1h
+
+5horas até aqui
+
+2012-06-08
+==========
+15 min
+
+2012-06-11
+==========
+45 min
+
+2012-06-13
+==========
+1h30
+Conversão de Object Contexts para DbContexts
+
+2012-06-14
+==========
+1h30
+Retoques no 
+
+2012-06-20
+==========
+3h
+Utilização do reCAPTCHA
+
+2012-06-25
+==========
+2h
+Alterações ao modelo dados
+
+2012-06-26
+==========
+16h30

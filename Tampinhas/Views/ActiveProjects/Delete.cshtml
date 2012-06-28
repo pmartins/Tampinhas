@@ -1,0 +1,68 @@
+﻿@model Tampinhas.Models.Project
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Project</legend>
+
+    <div class="display-label">BenefiterName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BenefiterName)
+    </div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">User</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User.Email)
+    </div>
+
+    <div class="display-label">Organization</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Organization.Name)
+    </div>
+
+    <div class="display-label">StatusType</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StatusType.Description)
+    </div>
+
+    <div class="display-label">ResponsibleName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ResponsibleName)
+    </div>
+
+    <div class="display-label">RaisedAmmount</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RaisedAmmount)
+    </div>
+
+    <div class="display-label">TotalAmmountRaise</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalAmmountRaise)
+    </div>
+
+    <div class="display-label">CreationDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreationDate)
+    </div>
+
+    <div class="display-label">ModifiedDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ModifiedDate)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

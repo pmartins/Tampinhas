@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Tampinhas.Models.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            BenefiterName
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            User
+        </th>
+        <th>
+            Organization
+        </th>
+        <th>
+            StatusType
+        </th>
+        <th>
+            ResponsibleName
+        </th>
+        <th>
+            RaisedAmmount
+        </th>
+        <th>
+            TotalAmmountRaise
+        </th>
+        <th>
+            CreationDate
+        </th>
+        <th>
+            ModifiedDate
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BenefiterName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Organization.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusType.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponsibleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RaisedAmmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmmountRaise)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
