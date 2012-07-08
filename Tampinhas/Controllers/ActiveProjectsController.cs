@@ -19,7 +19,9 @@ namespace Tampinhas.Controllers
 
         public ViewResult Index(string searchString)
         {
-            var projectset = db.ProjectSet.Include(p => p.User).Include(p => p.Organization).Include(p => p.StatusType);
+            // TODO: to filter only active projects here
+            var projectset = db.ProjectSet.Include(p => p.User).Include(p => p.Organization).Include(p => p.StatusType)
+                .Include(p => p.Organization.District).Include(p => p.Organization.County);
             
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -29,20 +31,47 @@ namespace Tampinhas.Controllers
             }
 
             projectset.OrderByDescending(p => p.CreationDate);
-            
+
             return View(projectset.ToList());
         }
 
 
 
-        ////
-        //// GET: /ActiveProjects/Details/5
+        //
+        // GET: /ActiveProjects/Details/5
+        public ViewResult Details(int id)
+        {
+            Project project = db.ProjectSet.Include(p => p.User).Include(p => p.Organization).Include(p => p.StatusType)
+                .Include(p => p.Organization.District).Include(p => p.Organization.County)
+                .Single(p => p.Id == id);
+                    
+            var ppcvm = new ProjectProjectCommentViewModel();
 
-        //public ViewResult Details(int id)
-        //{
-        //    Project project = db.ProjectSet.Single(p => p.Id == id);
-        //    return View(project);
-        //}
+            ppcvm.Project = project;
+       
+            var commentsSet = db.ProjectCommentSet.Where(pc => pc.ProjectId == id).OrderBy(pc => pc.ComentDate);
+            ppcvm.ProjectComments = commentsSet.ToList();
+            
+            return View(ppcvm);
+        }
+
+
+        [HttpPost]
+        public ViewResult Details(string comment, int projectId)
+        {
+            var pc = new ProjectComment();
+            pc.Comment = comment;
+            pc.ComentDate = DateTime.Now;
+            // TODO: obter o id do utilizador...
+            pc.UserId = 1;
+            pc.ProjectId = projectId;
+
+            db.ProjectCommentSet.Add(pc);
+            db.SaveChanges();
+
+
+            return Details(projectId);
+        }
 
         ////
         //// GET: /ActiveProjects/Create

@@ -12,6 +12,7 @@ namespace Tampinhas.DAL
         private void RemoveDatabaseData(TampinhasEntities context)
         {
             // Remove All Data           
+            context.Database.ExecuteSqlCommand("DELETE FROM ProjectCommentSet");
             context.Database.ExecuteSqlCommand("DELETE FROM ProjectSet");
             context.Database.ExecuteSqlCommand("DELETE FROM StatusTypeSet");
             context.Database.ExecuteSqlCommand("DELETE FROM UserSet");
@@ -154,7 +155,7 @@ namespace Tampinhas.DAL
 
             var user = new List<User>
             {
-                new User { Id = 1, Name="Zezinho", Email="zezinho@gmail.com", Active=true, Password="XXX" }
+                new User { Id = 1, Name="Zezinho", Email="zezinho@gmail.com", Active=true, Password="***" }
             };
             user.ForEach(s => context.UserSet.Add(s));
             context.SaveChanges();

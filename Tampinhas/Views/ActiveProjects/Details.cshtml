@@ -1,4 +1,4 @@
-﻿@model Tampinhas.Models.Project
+﻿@model Tampinhas.Models.ProjectProjectCommentViewModel
 
 @{
     ViewBag.Title = "Detalhe";
@@ -11,55 +11,114 @@
 
     <div class="display-label">Benefici&aacute;rio</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.BenefiterName)
+        @Html.DisplayFor(model => model.Project.BenefiterName)
     </div>
 
     <div class="display-label">Descri&ccedil;&atilde;o</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
+        @Html.DisplayFor(model => model.Project.Description)
     </div>
 
-    <div class="display-label">Organiza&ccedil;&atilde;o</div>
+        <div class="display-label">Quantia Angariada (Kgs)</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Organization.Name)
-    </div>
-
-    <div class="display-label">Nome do Respons&aacute;vel</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ResponsibleName)
-    </div>
-
-        <div class="display-label">E-mail do Respons&aacute;vel</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.User.Email)
-    </div>
-
-
-    <div class="display-label">Quantia Angariada (Kgs)</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.RaisedAmmount)
+        @Html.DisplayFor(model => model.Project.RaisedAmmount)
     </div>
 
     <div class="display-label">Quantia a Angariar (Kgs)</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.TotalAmmountRaise)
+        @Html.DisplayFor(model => model.Project.TotalAmmountRaise)
     </div>
 
     <div class="display-label">Data de Cria&ccedil;&atilde;o do Projecto</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.CreationDate)
+        @Html.DisplayFor(model => model.Project.CreationDate)
     </div>
 
     <div class="display-label">Data da &Ugrave;ltima Altera&ccedil;&atilde;o ao Projecto</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.ModifiedDate)
+        @Html.DisplayFor(model => model.Project.ModifiedDate)
     </div>
-
-        <div class="display-label">Estado do Projecto</div>
+    <div class="display-label">Estado do Projecto</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.StatusType.Description)
+        @Html.DisplayFor(model => model.Project.StatusType.Description)
     </div>
+    <br />  
 
+    <fieldset>
+        <legend>Organiza&ccedil;&atilde;o</legend>
+            <div class="display-label">
+                @Html.LabelFor(model => model.Project.Organization)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Project.Organization.Name)
+            </div>
+            <div class="display-label">
+                @Html.LabelFor(model => model.Project.Organization.Address)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Project.Organization.Address)
+            </div>
+            <div class="display-label">
+                @Html.LabelFor(model => model.Project.Organization.Location)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Project.Organization.Location)
+            </div>
+            <div class="display-label">
+                @Html.LabelFor(model => model.Project.Organization.County)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Project.Organization.County.Name)
+            </div>
+            <div class="display-label">
+                @Html.LabelFor(model => model.Project.Organization.District)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Project.Organization.District.Name)
+            </div>
+            <div class="display-label">Nome do Respons&aacute;vel</div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Project.ResponsibleName)
+            </div>
+            <div class="display-label">E-mail do Respons&aacute;vel</div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Project.User.Email)
+            </div>
+    </fieldset>
+</fieldset>
+<fieldset>
+    <legend>Coment&aacute;rios</legend>
+    <!-- Include here ordered comments from users -->
+    <!-- TODO: do not forget to only allow input for authenticated users -->
+    @if (Model.ProjectComments.ToArray().Length == 0)
+    {
+        <div class="display-label">N&atilde;o existem ainda comentários. Seja o primeiro a comentar!</div>
+    }
+    else
+    {
+        foreach (var comment in Model.ProjectComments)
+        {
+            <fieldset>
+                <legend>@comment.User.Name em @comment.ComentDate.ToString()</legend>
+                @comment.Comment
+            </fieldset>
+        }
+    }
+
+    <hr />
+    <div class="display-label">Deixe aqui o seu coment&aacute;rio</div>
+    <br />
+    <!-- TODO: Include here comment form ONLY for registred users -->
+    @using (Html.BeginForm())
+    {
+        @Html.Hidden("projectId", Model.Project.Id);
+        <div class="display-field">
+            <textarea id="comment" name="comment" cols="80" rows="3"></textarea>
+        </div>
+        <p>
+            <input type="submit" value="Comentar" />
+        </p>
+    }
 </fieldset>
 <p>
     @Html.ActionLink("Voltar à lista", "Index")

@@ -4,7 +4,7 @@ to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
 body {
-    /*background-color: #5c87b2;*/
+    background-color: #ffffff;
     background-image: url('/Content/Images/Plastic-Bottle-Caps.jpg');
     background-repeat: repeat;
     font-size: .85em;
@@ -15,7 +15,7 @@ body {
 }
 
 a:link {
-    color: #034af3;
+    color: #0000ff;
     text-decoration: underline;
 }
 
@@ -95,12 +95,11 @@ header h1, #header h1 {
     font-weight: bold;
     padding: 5px 0;
     margin: 0;
-    /*color: #fff;*/
-    color: #0066FF;
+    color: #0000ff;
     border: none;
     line-height: 2em;
     font-size: 32px !important;
-    text-shadow: 1px 1px 2px #111;
+    text-shadow: 1px 1px 2px Aqua; /*#111;*/
 }
 
 #main {
@@ -260,21 +259,21 @@ div#title {
     display: block;
     text-align: right;
     margin: 10px;
-    color: White;
+    color: #0000ff;
 }
 
 #logindisplay a:link {
-    color: white;
+    color: #0000ff;
     text-decoration: underline;
 }
 
 #logindisplay a:visited {
-    color: white;
+    color: #0000ff;
     text-decoration: underline;
 }
 
 #logindisplay a:hover {
-    color: white;
+    color: #00ff00;
     text-decoration: none;
 }
 

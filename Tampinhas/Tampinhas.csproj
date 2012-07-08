@@ -91,6 +91,7 @@
       <DependentUpon>TampinhasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProjectIndexData.cs" />
+    <Compile Include="Models\ProjectProjectCommentViewModel.cs" />
     <Compile Include="Models\ProjectStatusChange.cs">
       <DependentUpon>TampinhasModel.tt</DependentUpon>
     </Compile>
@@ -164,6 +165,7 @@
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>

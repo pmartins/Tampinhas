@@ -60,7 +60,7 @@ namespace Tampinhas.Controllers
         {
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "ActiveProjects");
         }
 
         //

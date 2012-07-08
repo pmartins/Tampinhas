@@ -19,7 +19,6 @@ namespace Tampinhas.Controllers
         public ViewResult Index()
         {
             var projectset = db.ProjectSet.Include(p => p.User).Include(p => p.Organization).Include(p => p.StatusType); 
-            //.Where(p => p.CreatorId==ViewBag.;
             return View(projectset.ToList());
         }
 
@@ -37,9 +36,7 @@ namespace Tampinhas.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            //ViewBag.CreatorId = new SelectList(db.UserSet, "Id", "Email");
             ViewBag.OrganizationId = new SelectList(db.OrganizationSet, "Id", "Name");
-            //ViewBag.StatusTypeId = new SelectList(db.StatusTypeSet, "Id", "Description");
             return View();
         } 
 
@@ -63,9 +60,6 @@ namespace Tampinhas.Controllers
                 return RedirectToAction("Index");  
             }
 
-            //ViewBag.CreatorId = new SelectList(db.UserSet, "Id", "Email", project.CreatorId);
-            //ViewBag.OrganizationId = new SelectList(db.OrganizationSet, "Id", "Name", project.OrganizationId);
-            //ViewBag.StatusTypeId = new SelectList(db.StatusTypeSet, "Id", "Description", project.StatusTypeId);
             return View(project);
         }
         
