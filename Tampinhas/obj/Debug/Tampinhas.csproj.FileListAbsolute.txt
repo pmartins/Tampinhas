@@ -1,9 +1,0 @@
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas\bin\Tampinhas.dll
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas\bin\Tampinhas.pdb
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas\bin\EntityFramework.dll
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas\bin\EntityFramework.xml
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas\obj\Debug\Tampinhas.dll
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas\obj\Debug\Tampinhas.pdb
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas\bin\Recaptcha.dll
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\Tampinhas\bin\Recaptcha.pdb

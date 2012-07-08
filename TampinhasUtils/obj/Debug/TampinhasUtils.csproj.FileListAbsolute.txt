@@ -1,7 +1,0 @@
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\TampinhasUtils\bin\Debug\TampinhasUtils.dll
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\TampinhasUtils\bin\Debug\TampinhasUtils.pdb
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\TampinhasUtils\bin\Debug\Recaptcha.dll
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\TampinhasUtils\bin\Debug\Recaptcha.pdb
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\TampinhasUtils\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\TampinhasUtils\obj\Debug\TampinhasUtils.dll
-C:\Users\pmartins\Documents\Visual Studio 2010\Projects\Tampinhas\TampinhasUtils\obj\Debug\TampinhasUtils.pdb
