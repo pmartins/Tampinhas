@@ -24,7 +24,7 @@ a:visited {
 }
 
 a:hover {
-    color: #1d60ff;
+    color: Aqua; /* #1d60ff; */
     text-decoration: none;
 }
 

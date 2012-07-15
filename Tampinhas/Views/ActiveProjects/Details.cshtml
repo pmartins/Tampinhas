@@ -89,12 +89,20 @@
 <fieldset>
     <legend>Coment&aacute;rios</legend>
     <!-- Include here ordered comments from users -->
-    <!-- TODO: do not forget to only allow input for authenticated users -->
-    @if (Model.ProjectComments.ToArray().Length == 0)
+    @if (Request.IsAuthenticated)
     {
-        <div class="display-label">N&atilde;o existem ainda comentários. Seja o primeiro a comentar!</div>
+        if (Model.ProjectComments.ToArray().Length == 0)
+        {
+            <div class="display-label">N&atilde;o existem ainda comentários. Seja o primeiro a comentar!</div>
+        }
     }
-    else
+    else 
+    {
+        <div class="display-label">Para commentar dever&aacute; ser um utilizador registado. Fa&ccedil;a @Html.ActionLink("login", "LogOn", "Account") ou @Html.ActionLink("registe-se", "Register", "Account") para poder comentar.</div>
+        <br />
+    }
+    
+    @if (Model.ProjectComments.ToArray().Length > 0)
     {
         foreach (var comment in Model.ProjectComments)
         {
@@ -103,21 +111,24 @@
                 @comment.Comment
             </fieldset>
         }
-    }
-
-    <hr />
-    <div class="display-label">Deixe aqui o seu coment&aacute;rio</div>
-    <br />
-    <!-- TODO: Include here comment form ONLY for registred users -->
-    @using (Html.BeginForm())
+    }    
+    
+    @if (Request.IsAuthenticated)
     {
-        @Html.Hidden("projectId", Model.Project.Id);
-        <div class="display-field">
-            <textarea id="comment" name="comment" cols="80" rows="3"></textarea>
-        </div>
-        <p>
-            <input type="submit" value="Comentar" />
-        </p>
+        <hr />
+        <div class="display-label">Deixe aqui o seu coment&aacute;rio</div>
+        <br />
+        
+        using (Html.BeginForm())
+        {
+            @Html.Hidden("projectId", Model.Project.Id);
+            <div class="display-field">
+                <textarea id="comment" name="comment" cols="80" rows="3"></textarea>
+            </div>
+            <p>
+                <input type="submit" value="Comentar" />
+            </p>
+        }
     }
 </fieldset>
 <p>

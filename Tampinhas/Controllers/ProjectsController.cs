@@ -18,7 +18,9 @@ namespace Tampinhas.Controllers
         [Authorize]
         public ViewResult Index()
         {
-            var projectset = db.ProjectSet.Include(p => p.User).Include(p => p.Organization).Include(p => p.StatusType); 
+            var projectset = db.ProjectSet.Include(p => p.User).Include(p => p.Organization).Include(p => p.StatusType)
+                .Include(p => p.Organization.District).Include(p => p.Organization.County)
+                .Include(p => p.ProjectComment).OrderByDescending(p => p.ModifiedDate);
             return View(projectset.ToList());
         }
 
@@ -27,8 +29,36 @@ namespace Tampinhas.Controllers
 
         public ViewResult Details(int id)
         {
-            Project project = db.ProjectSet.Find(id);
-            return View(project);
+            Project project = db.ProjectSet.Include(p => p.User).Include(p => p.Organization).Include(p => p.StatusType)
+                .Include(p => p.Organization.District).Include(p => p.Organization.County)
+                .Single(p => p.Id == id);
+
+            var ppcvm = new ProjectProjectCommentViewModel();
+
+            ppcvm.Project = project;
+
+            var commentsSet = db.ProjectCommentSet.Where(pc => pc.ProjectId == id).OrderBy(pc => pc.ComentDate);
+            ppcvm.ProjectComments = commentsSet.ToList();
+
+            return View(ppcvm);
+        }
+
+        [HttpPost]
+        public ViewResult Details(string comment, int projectId)
+        {
+            var pc = new ProjectComment();
+            pc.Comment = comment;
+            pc.ComentDate = DateTime.Now;
+            // TODO: obter o id do utilizador...
+            //MemberShip
+            pc.UserId = 1;
+            pc.ProjectId = projectId;
+
+            db.ProjectCommentSet.Add(pc);
+            db.SaveChanges();
+
+
+            return Details(projectId);
         }
 
         //

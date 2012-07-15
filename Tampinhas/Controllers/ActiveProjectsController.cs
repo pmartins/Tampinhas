@@ -63,6 +63,7 @@ namespace Tampinhas.Controllers
             pc.Comment = comment;
             pc.ComentDate = DateTime.Now;
             // TODO: obter o id do utilizador...
+            //MemberShip
             pc.UserId = 1;
             pc.ProjectId = projectId;
 

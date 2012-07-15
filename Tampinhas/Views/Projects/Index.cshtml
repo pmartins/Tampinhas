@@ -1,45 +1,38 @@
 ﻿@model IEnumerable<Tampinhas.Models.Project>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Os Meus Projectos";
 }
 
-<h2>Index</h2>
+<h2>Os Meus Projectos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar Novo Projecto", "Create")
 </p>
+
+<h3>Projectos Criados</h3>
 <table>
     <tr>
         <th>
-            BenefiterName
+            Benefici&aacute;rio
         </th>
         <th>
-            Description
+            Organiza&ccedil;&atilde;o
         </th>
         <th>
-            User
+            Local
         </th>
         <th>
-            Organization
+            Qtd Angariada
         </th>
         <th>
-            StatusType
+            Data &Uacute;ltima Actualiza&ccedil;&atilde;o
         </th>
         <th>
-            ResponsibleName
+            Nr Coment&aacute;rios
         </th>
         <th>
-            RaisedAmmount
-        </th>
-        <th>
-            TotalAmmountRaise
-        </th>
-        <th>
-            CreationDate
-        </th>
-        <th>
-            ModifiedDate
+            Estado
         </th>
         <th></th>
     </tr>
@@ -50,36 +43,32 @@
             @Html.DisplayFor(modelItem => item.BenefiterName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Email)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Organization.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StatusType.Description)
+            @Html.DisplayFor(modelItem => item.Organization.District.Name) /
+            @Html.DisplayFor(modelItem => item.Organization.County.Name) /
+            @Html.DisplayFor(modelItem => item.Organization.Location)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ResponsibleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RaisedAmmount)
-        </td>
-        <td>
+            @Html.DisplayFor(modelItem => item.RaisedAmmount) /
             @Html.DisplayFor(modelItem => item.TotalAmmountRaise)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ModifiedDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.DisplayFor(modelItem => item.ProjectComment.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusType.Description)
+        </td>        
+        <td>
+            @Html.ActionLink("Visualizar", "Details", new { id = item.Id }, new { title = "Tem também a possibilidade de comentar" } ) |
+            @Html.ActionLink("Actualizar", "Details", new { id = item.Id }, new { title = "Actualizar quantidade de cápsulas angariadas" } ) |
+            @Html.ActionLink("Sucesso!", "Details", new { id = item.Id }, new { title = "Projecto terminado com sucesso" }) |
+            @Html.ActionLink("Corrigir", "Details", new { id = item.Id }, new { title = "Corrigir informações sobre o projecto" }) |
+            @Html.ActionLink("Cancelar", "Details", new { id = item.Id }, new { title = "Cancelar projecto" })
         </td>
     </tr>
 }
